@@ -58,7 +58,6 @@ library
       Graphics.Pango.LowLevel.TabStops
       Graphics.Pango.LowLevel.TabStops.Internal
       Graphics.Pango.Rendering.Cairo
-      Lib
       System.Glib.Bool
       System.Glib.ErrorReporting
       System.Glib.GObject
