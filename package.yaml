@@ -21,9 +21,23 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
+- template-haskell
+- array
+- containers
+- bytestring
+- text
+- primitive
+- c-enum
+- c-struct
+- union-angle
+- simple-cairo
 
 library:
   source-dirs: src
+  include-dirs: include
+  c-sources:
+  - csrc/pango_log_attr.c
+  pkg-config-dependencies: pangocairo
 
 tests:
   simple-pango-test:
