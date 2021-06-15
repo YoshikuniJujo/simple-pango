@@ -23,10 +23,10 @@ import Foreign.Storable
 import Foreign.C.Types
 import Data.Int
 
-import System.Glib.Bool
+import System.GLib.Bool
 import Graphics.Pango.Basic.GlyphStorage.Internal
 import Graphics.Pango.Basic.LayoutObjects.PangoLayout.Internal
-import System.Glib.SinglyLinkedLists
+import System.GLib.SinglyLinkedLists
 
 #include <pango/pango.h>
 

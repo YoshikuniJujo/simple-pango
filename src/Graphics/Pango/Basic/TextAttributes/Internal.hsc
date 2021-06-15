@@ -77,8 +77,8 @@ import Data.Int
 import Data.Char
 import System.IO.Unsafe
 
-import System.Glib.ErrorReporting
-import System.Glib.SimpleXmlSubsetParser
+import System.GLib.ErrorReporting
+import System.GLib.SimpleXmlSubsetParser
 
 import qualified Data.Text as T
 import qualified Data.Text.Foreign as T

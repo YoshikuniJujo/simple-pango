@@ -4,4 +4,4 @@ module System.GLib.Quarks (
 	GQuark,
 	gQuarkFromString, gQuarkToString, gInternString, gUninternString ) where
 
-import System.Glib.Quarks.Internal
+import System.GLib.Quarks.Internal

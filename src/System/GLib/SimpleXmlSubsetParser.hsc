@@ -31,8 +31,8 @@ import Foreign.C.Enum
 import Control.Monad.Primitive
 import Data.Word
 import Data.Int
-import System.Glib.ErrorReporting
-import System.Glib.Quarks.Internal
+import System.GLib.ErrorReporting
+import System.GLib.Quarks.Internal
 
 import System.IO.Unsafe
 

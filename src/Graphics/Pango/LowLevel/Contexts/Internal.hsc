@@ -10,7 +10,7 @@ import Foreign.Ptr.Misc
 import Foreign.ForeignPtr hiding (newForeignPtr)
 import Foreign.Concurrent
 import Data.Word
-import System.Glib.GObject
+import System.GLib.GObject
 
 import Graphics.Pango.Basic.Fonts.PangoFontDescription.Type
 

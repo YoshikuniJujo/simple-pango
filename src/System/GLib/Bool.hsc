@@ -4,7 +4,7 @@ module System.GLib.Bool (gbooleanToBool, boolToGboolean) where
 
 import Data.Int
 
-#include <pango/pango.h>
+#include <glib.h>
 
 gbooleanToBool :: #{type gboolean} -> Bool
 gbooleanToBool #{const FALSE} = False

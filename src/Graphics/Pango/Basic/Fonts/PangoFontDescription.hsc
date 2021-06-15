@@ -74,7 +74,7 @@ import Data.Bool
 import Data.Word
 import Data.Int
 
-import System.Glib.Bool
+import System.GLib.Bool
 import Graphics.Pango.Basic.Fonts.PangoFontDescription.Type
 import Graphics.Pango.Basic.VerticalText
 

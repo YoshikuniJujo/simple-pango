@@ -9,7 +9,7 @@ import Foreign.Storable
 import Foreign.C.Types
 import Foreign.C.String
 
-import System.Glib.Quarks
+import System.GLib.Quarks
 
 #include <glib.h>
 
