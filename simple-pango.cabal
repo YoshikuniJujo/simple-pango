@@ -58,13 +58,6 @@ library
       Graphics.Pango.LowLevel.TabStops
       Graphics.Pango.LowLevel.TabStops.Internal
       Graphics.Pango.Rendering.Cairo
-      System.GLib.Bool
-      System.GLib.ErrorReporting
-      System.GLib.GObject
-      System.GLib.Quarks
-      System.GLib.Quarks.Internal
-      System.GLib.SimpleXmlSubsetParser
-      System.GLib.SinglyLinkedLists
   other-modules:
       Paths_simple_pango
   hs-source-dirs:
@@ -82,6 +75,7 @@ library
     , c-enum
     , c-struct
     , containers
+    , glib-stopgap
     , primitive
     , simple-cairo
     , template-haskell
@@ -104,6 +98,7 @@ test-suite simple-pango-test
     , c-enum
     , c-struct
     , containers
+    , glib-stopgap
     , primitive
     , simple-cairo
     , simple-pango

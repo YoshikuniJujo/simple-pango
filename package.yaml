@@ -31,6 +31,7 @@ dependencies:
 - c-struct
 - union-angle
 - simple-cairo
+- glib-stopgap
 
 library:
   source-dirs: src
