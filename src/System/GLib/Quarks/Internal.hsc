@@ -2,7 +2,7 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# OPTIONS_GHC -Wall -fno-warn-tabs #-}
 
-module System.Glib.Quarks.Internal (
+module System.GLib.Quarks.Internal (
 	GQuark(..),
 	gQuarkFromString, gQuarkToString, gInternString, gUninternString,
 	gQuarkTryString ) where

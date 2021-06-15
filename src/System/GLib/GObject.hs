@@ -1,4 +1,4 @@
-module System.Glib.GObject where
+module System.GLib.GObject where
 
 import Foreign.Ptr
 

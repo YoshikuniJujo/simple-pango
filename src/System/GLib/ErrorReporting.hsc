@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -Wall -fno-warn-tabs #-}
 
-module System.Glib.ErrorReporting (
+module System.GLib.ErrorReporting (
 	GError(..), mkGError, gErrorReport
 	) where
 

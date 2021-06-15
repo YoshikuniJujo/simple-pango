@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -Wall -fno-warn-tabs #-}
 
-module System.Glib.Bool (gbooleanToBool, boolToGboolean) where
+module System.GLib.Bool (gbooleanToBool, boolToGboolean) where
 
 import Data.Int
 

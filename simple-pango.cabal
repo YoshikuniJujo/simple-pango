@@ -58,13 +58,13 @@ library
       Graphics.Pango.LowLevel.TabStops
       Graphics.Pango.LowLevel.TabStops.Internal
       Graphics.Pango.Rendering.Cairo
-      System.Glib.Bool
-      System.Glib.ErrorReporting
-      System.Glib.GObject
-      System.Glib.Quarks
-      System.Glib.Quarks.Internal
-      System.Glib.SimpleXmlSubsetParser
-      System.Glib.SinglyLinkedLists
+      System.GLib.Bool
+      System.GLib.ErrorReporting
+      System.GLib.GObject
+      System.GLib.Quarks
+      System.GLib.Quarks.Internal
+      System.GLib.SimpleXmlSubsetParser
+      System.GLib.SinglyLinkedLists
   other-modules:
       Paths_simple_pango
   hs-source-dirs:
