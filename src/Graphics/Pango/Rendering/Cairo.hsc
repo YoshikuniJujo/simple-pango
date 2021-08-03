@@ -17,7 +17,13 @@ module Graphics.Pango.Rendering.Cairo (
 	-- * PATH
 	pangoCairoLayoutLinePath,
 	pangoCairoLayoutPath,
-	pangoCairoErrorUnderlinePath ) where
+	pangoCairoErrorUnderlinePath,
+
+	-- * RESOLUTION
+	pangoCairoContextGetResolution,
+	pangoCairoContextSetResolution
+
+	) where
 
 import Foreign.Ptr
 import Foreign.ForeignPtr hiding (addForeignPtrFinalizer)
@@ -133,3 +139,19 @@ pangoCairoErrorUnderlinePath (CairoT fcr) x y w h = withForeignPtr fcr \cr ->
 foreign import ccall "pango_cairo_error_underline_path"
 	c_pango_cairo_error_underline_path ::
 	Ptr (CairoT r s) -> CDouble -> CDouble -> CDouble -> CDouble -> IO ()
+
+pangoCairoContextGetResolution :: PangoContext -> IO CDouble
+pangoCairoContextGetResolution (PangoContext fctx) =
+	withForeignPtr fctx c_pango_cairo_context_get_resolution
+
+foreign import ccall "pango_cairo_context_get_resolution"
+	c_pango_cairo_context_get_resolution ::
+	Ptr PangoContext -> IO CDouble
+
+pangoCairoContextSetResolution :: PangoContext -> CDouble -> IO ()
+pangoCairoContextSetResolution (PangoContext fctx) r =
+	withForeignPtr fctx \pctx -> c_pango_cairo_context_set_resolution pctx r
+
+foreign import ccall "pango_cairo_context_set_resolution"
+	c_pango_cairo_context_set_resolution ::
+	Ptr PangoContext -> CDouble -> IO ()
