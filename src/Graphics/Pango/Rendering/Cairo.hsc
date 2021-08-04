@@ -32,7 +32,7 @@ import Foreign.Marshal
 import Foreign.C
 import Foreign.C.String.Misc
 import Control.Monad.Primitive
-
+import Data.Maybe
 import Data.CairoContext
 
 import Graphics.Pango.Basic.GlyphStorage.Internal
@@ -140,17 +140,19 @@ foreign import ccall "pango_cairo_error_underline_path"
 	c_pango_cairo_error_underline_path ::
 	Ptr (CairoT r s) -> CDouble -> CDouble -> CDouble -> CDouble -> IO ()
 
-pangoCairoContextGetResolution :: PangoContext -> IO CDouble
-pangoCairoContextGetResolution (PangoContext fctx) =
-	withForeignPtr fctx c_pango_cairo_context_get_resolution
+pangoCairoContextGetResolution :: PangoContext -> IO (Maybe CDouble)
+pangoCairoContextGetResolution (PangoContext fctx) = do
+	r <- withForeignPtr fctx c_pango_cairo_context_get_resolution
+	pure if r < 0 then Nothing else Just r
 
 foreign import ccall "pango_cairo_context_get_resolution"
 	c_pango_cairo_context_get_resolution ::
 	Ptr PangoContext -> IO CDouble
 
-pangoCairoContextSetResolution :: PangoContext -> CDouble -> IO ()
-pangoCairoContextSetResolution (PangoContext fctx) r =
-	withForeignPtr fctx \pctx -> c_pango_cairo_context_set_resolution pctx r
+pangoCairoContextSetResolution :: PangoContext -> Maybe CDouble -> IO ()
+pangoCairoContextSetResolution (PangoContext fctx) mr =
+	withForeignPtr fctx \pctx -> c_pango_cairo_context_set_resolution pctx
+		$ fromMaybe (- 1) mr
 
 foreign import ccall "pango_cairo_context_set_resolution"
 	c_pango_cairo_context_set_resolution ::
