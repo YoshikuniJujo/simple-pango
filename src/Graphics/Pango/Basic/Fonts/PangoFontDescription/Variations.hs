@@ -7,10 +7,16 @@
 module Graphics.Pango.Basic.Fonts.PangoFontDescription.Variations (
 	-- * AXIS CLASS
 	PangoFontDescriptionAxis,
+	pangoFontDescriptionAxisTag,
+	pangoFontDescriptionAxisToDouble, pangoFontDescriptionAxisFromDouble,
 	-- * ADD AXIS
 	pangoFontDescriptionAddAxis,
 	-- * SET AND GET AXIS
 	pangoFontDescriptionSetAxis, pangoFontDescriptionGetAxis,
+	-- * SET AND GET VARIATIONS
+	Variations,
+	pangoFontDescriptionSetVariationsMap,
+	pangoFontDescriptionGetVariationsMap,
 	-- * DEFAULT AXES
 	Weight(..), Width(..), Slant(..), Italic(..), OpticalSize(..)
 	) where
