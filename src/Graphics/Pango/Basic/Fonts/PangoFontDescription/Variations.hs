@@ -5,12 +5,6 @@
 {-# OPTIONS_GHC -Wall -fno-warn-tabs #-}
 
 module Graphics.Pango.Basic.Fonts.PangoFontDescription.Variations (
-	-- * AXIS CLASS
-	PangoFontDescriptionAxis,
-	pangoFontDescriptionAxisTag,
-	pangoFontDescriptionAxisToDouble, pangoFontDescriptionAxisFromDouble,
-	-- * ADD AXIS
-	pangoFontDescriptionAddAxis,
 	-- * SET AND GET AXIS
 	pangoFontDescriptionSetAxis, pangoFontDescriptionGetAxis,
 	-- * SET AND GET VARIATIONS
@@ -33,14 +27,9 @@ import qualified Data.Map as M
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Char8 as BSC
 
-import Language.Haskell.TH
-
 import System.IO.Unsafe
 
-class PangoFontDescriptionAxis a where
-	pangoFontDescriptionAxisTag :: BS.ByteString
-	pangoFontDescriptionAxisToDouble :: a -> Double
-	pangoFontDescriptionAxisFromDouble :: Double -> a
+import Data.Font.VariationAxis
 
 pangoFontDescriptionSetAxis :: forall a m .
 	(PangoFontDescriptionAxis a, PrimMonad m) =>
@@ -95,8 +84,6 @@ instance PangoFontDescriptionAxis Slant where
 	pangoFontDescriptionAxisToDouble = getSlant
 	pangoFontDescriptionAxisFromDouble = Slant
 
-type Variations = M.Map BS.ByteString Double
-
 showVariations :: Variations -> BS.ByteString
 showVariations = BS.intercalate "," . ((\(a, v) -> a <> "=" <> v) . (id *** BSC.pack . show) <$>) . M.toList
 
@@ -125,23 +112,3 @@ myPackCString cs | cs == nullPtr = pure "" | otherwise = BS.packCString cs
 foreign import ccall "pango_font_description_get_variations"
 	c_pango_font_description_get_variations ::
 	Ptr PangoFontDescription -> IO CString
-
-pangoFontDescriptionAddAxis :: String -> String -> DecsQ
-pangoFontDescriptionAddAxis a t = (\n i -> [n, i])
-	<$> pangoFontDescriptionAddAxisNewtype a
-	<*> pangoFontDescriptionAddAxisInstance a t
-
-pangoFontDescriptionAddAxisNewtype :: String -> DecQ
-pangoFontDescriptionAddAxisNewtype a =
-	newtypeD (cxt [])
-		(mkName a) [] Nothing (recC (mkName a) [
-			varBangType (mkName $ "get" ++ a)
-				$ bangType (bang noSourceUnpackedness noSourceStrictness) (conT ''Double) ])
-		[derivClause Nothing [conT ''Show]]
-
-pangoFontDescriptionAddAxisInstance :: String -> String -> DecQ
-pangoFontDescriptionAddAxisInstance a t = instanceD (cxt []) (conT ''PangoFontDescriptionAxis `appT` conT (mkName a)) [
-	valD (varP 'pangoFontDescriptionAxisTag) (normalB . litE $ StringL t) [],
-	valD (varP 'pangoFontDescriptionAxisToDouble) (normalB . varE . mkName $ "get" ++ a) [],
-	valD (varP 'pangoFontDescriptionAxisFromDouble) (normalB . conE $ mkName a) []
-	]
