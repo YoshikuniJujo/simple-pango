@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       Data.Font.VariationAxis
+      Data.Font.VariationAxis.Internal
       Data.Text.CString
       Data.Text.Foreign.StringPartial
       Foreign.C.String.ForeignCStringLen

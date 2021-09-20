@@ -65,9 +65,3 @@ myPackCString cs | cs == nullPtr = pure "" | otherwise = BS.packCString cs
 foreign import ccall "pango_font_description_get_variations"
 	c_pango_font_description_get_variations ::
 	Ptr PangoFontDescription -> IO CString
-
-fontDescriptionAddAxis "Weight" "wght"
-fontDescriptionAddAxis "Width" "wdth"
-fontDescriptionAddAxis "Italic" "ital"
-fontDescriptionAddAxis "OpticalSize" "opsz"
-fontDescriptionAddAxis "Slant" "slnt"
