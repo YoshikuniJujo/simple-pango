@@ -6,14 +6,13 @@
 
 module Data.Font.VariationAxis (
 	-- * AXIS CLASS
-	PangoFontDescriptionAxis,
+	FontDescriptionAxis,
 	-- * ADD AXIS
-	pangoFontDescriptionAddAxis,
-	-- * SET AND GET VARIATIONS
-	Variations,
-	-- * Others
-	showVariations, readVariations, variationsSetAxis, variationsGetAxis
-	) where
+	fontDescriptionAddAxis,
+	-- * SET AND GET AXIS
+	Variations, variationsSetAxis, variationsGetAxis,
+	-- * SHOW AND READ VARIATIONS
+	showVariations, readVariations ) where
 
 import Control.Arrow
 
@@ -23,67 +22,32 @@ import qualified Data.ByteString.Char8 as BSC
 
 import Language.Haskell.TH
 
-class PangoFontDescriptionAxis a where
-	pangoFontDescriptionAxisTag :: BS.ByteString
-	pangoFontDescriptionAxisToDouble :: a -> Double
-	pangoFontDescriptionAxisFromDouble :: Double -> a
-
-newtype Weight = Weight { getWeight :: Double } deriving Show
-
-instance PangoFontDescriptionAxis Weight where
-	pangoFontDescriptionAxisTag = "wght"
-	pangoFontDescriptionAxisToDouble = getWeight
-	pangoFontDescriptionAxisFromDouble = Weight
-
-newtype Width = Width { getWidth :: Double } deriving Show
-
-instance PangoFontDescriptionAxis Width where
-	pangoFontDescriptionAxisTag = "wdth"
-	pangoFontDescriptionAxisToDouble = getWidth
-	pangoFontDescriptionAxisFromDouble = Width
-
-newtype Italic = Italic { getItalic :: Double } deriving Show
-
-instance PangoFontDescriptionAxis Italic where
-	pangoFontDescriptionAxisTag = "ital"
-	pangoFontDescriptionAxisToDouble = getItalic
-	pangoFontDescriptionAxisFromDouble = Italic
-
-newtype OpticalSize = OpticalSize { getOpticalSize :: Double } deriving Show
-
-instance PangoFontDescriptionAxis OpticalSize where
-	pangoFontDescriptionAxisTag = "opsz"
-	pangoFontDescriptionAxisToDouble = getOpticalSize
-	pangoFontDescriptionAxisFromDouble = OpticalSize
-
-newtype Slant = Slant { getSlant :: Double } deriving Show
-
-instance PangoFontDescriptionAxis Slant where
-	pangoFontDescriptionAxisTag = "slnt"
-	pangoFontDescriptionAxisToDouble = getSlant
-	pangoFontDescriptionAxisFromDouble = Slant
+class FontDescriptionAxis a where
+	fontDescriptionAxisTag :: BS.ByteString
+	fontDescriptionAxisToDouble :: a -> Double
+	fontDescriptionAxisFromDouble :: Double -> a
 
 newtype Variations = Variations { getVariations :: M.Map BS.ByteString Double }
 	deriving Show
 
-pangoFontDescriptionAddAxis :: String -> String -> DecsQ
-pangoFontDescriptionAddAxis a t = (\n i -> [n, i])
-	<$> pangoFontDescriptionAddAxisNewtype a
-	<*> pangoFontDescriptionAddAxisInstance a t
+fontDescriptionAddAxis :: String -> String -> DecsQ
+fontDescriptionAddAxis a t = (\n i -> [n, i])
+	<$> fontDescriptionAddAxisNewtype a
+	<*> fontDescriptionAddAxisInstance a t
 
-pangoFontDescriptionAddAxisNewtype :: String -> DecQ
-pangoFontDescriptionAddAxisNewtype a =
+fontDescriptionAddAxisNewtype :: String -> DecQ
+fontDescriptionAddAxisNewtype a =
 	newtypeD (cxt [])
 		(mkName a) [] Nothing (recC (mkName a) [
 			varBangType (mkName $ "get" ++ a)
 				$ bangType (bang noSourceUnpackedness noSourceStrictness) (conT ''Double) ])
 		[derivClause Nothing [conT ''Show]]
 
-pangoFontDescriptionAddAxisInstance :: String -> String -> DecQ
-pangoFontDescriptionAddAxisInstance a t = instanceD (cxt []) (conT ''PangoFontDescriptionAxis `appT` conT (mkName a)) [
-	valD (varP 'pangoFontDescriptionAxisTag) (normalB . litE $ StringL t) [],
-	valD (varP 'pangoFontDescriptionAxisToDouble) (normalB . varE . mkName $ "get" ++ a) [],
-	valD (varP 'pangoFontDescriptionAxisFromDouble) (normalB . conE $ mkName a) []
+fontDescriptionAddAxisInstance :: String -> String -> DecQ
+fontDescriptionAddAxisInstance a t = instanceD (cxt []) (conT ''FontDescriptionAxis `appT` conT (mkName a)) [
+	valD (varP 'fontDescriptionAxisTag) (normalB . litE $ StringL t) [],
+	valD (varP 'fontDescriptionAxisToDouble) (normalB . varE . mkName $ "get" ++ a) [],
+	valD (varP 'fontDescriptionAxisFromDouble) (normalB . conE $ mkName a) []
 	]
 
 showVariations :: Variations -> BS.ByteString
@@ -92,12 +56,12 @@ showVariations = BS.intercalate "," . ((\(a, v) -> a <> "=" <> v) . (id *** BSC.
 readVariations :: BS.ByteString -> Variations
 readVariations = Variations . M.fromList . ((\[a, v] -> (a, read $ BSC.unpack v)) . BSC.split '=' <$>) . BSC.split ','
 
-variationsSetAxis :: forall a . PangoFontDescriptionAxis a => a -> Variations -> Variations
+variationsSetAxis :: forall a . FontDescriptionAxis a => a -> Variations -> Variations
 variationsSetAxis a = Variations . M.insert
-		(pangoFontDescriptionAxisTag @a)
-		(pangoFontDescriptionAxisToDouble a) . getVariations
+		(fontDescriptionAxisTag @a)
+		(fontDescriptionAxisToDouble a) . getVariations
 
 variationsGetAxis ::
-	forall a . PangoFontDescriptionAxis a => Variations -> Maybe a
-variationsGetAxis (Variations as) = pangoFontDescriptionAxisFromDouble
-	<$> M.lookup (pangoFontDescriptionAxisTag @a) as
+	forall a . FontDescriptionAxis a => Variations -> Maybe a
+variationsGetAxis (Variations as) = fontDescriptionAxisFromDouble
+	<$> M.lookup (fontDescriptionAxisTag @a) as

@@ -29,14 +29,14 @@ import System.IO.Unsafe
 import Data.Font.VariationAxis
 
 pangoFontDescriptionSetAxis :: forall a m .
-	(PangoFontDescriptionAxis a, PrimMonad m) =>
+	(FontDescriptionAxis a, PrimMonad m) =>
 	PangoFontDescriptionPrim (PrimState m) -> a -> m ()
 pangoFontDescriptionSetAxis fd a = do
 	as <- pangoFontDescriptionGetVariationsMap fd
 	pangoFontDescriptionSetVariationsMap fd $ variationsSetAxis a as
 
 pangoFontDescriptionGetAxis ::
-	forall a . PangoFontDescriptionAxis a => PangoFontDescription -> Maybe a
+	forall a . FontDescriptionAxis a => PangoFontDescription -> Maybe a
 pangoFontDescriptionGetAxis fd = unsafePerformIO do
 	pangoFontDescriptionThaw fd >>= \case
 		fd' -> do
@@ -66,8 +66,8 @@ foreign import ccall "pango_font_description_get_variations"
 	c_pango_font_description_get_variations ::
 	Ptr PangoFontDescription -> IO CString
 
-pangoFontDescriptionAddAxis "Weight" "wght"
-pangoFontDescriptionAddAxis "Width" "wdth"
-pangoFontDescriptionAddAxis "Italic" "ital"
-pangoFontDescriptionAddAxis "OpticalSize" "opsz"
-pangoFontDescriptionAddAxis "Slant" "slnt"
+fontDescriptionAddAxis "Weight" "wght"
+fontDescriptionAddAxis "Width" "wdth"
+fontDescriptionAddAxis "Italic" "ital"
+fontDescriptionAddAxis "OpticalSize" "opsz"
+fontDescriptionAddAxis "Slant" "slnt"
