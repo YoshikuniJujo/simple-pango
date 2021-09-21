@@ -10,7 +10,7 @@ module Data.Font.VariationAxis.Internal (
 	-- * ADD AXIS
 	fontDescriptionAddAxis,
 	-- * SET AND GET AXIS
-	Variations, variationsSetAxis, variationsGetAxis,
+	Variations, variationsEmpty, variationsSetAxis, variationsGetAxis,
 	-- * SHOW AND READ VARIATIONS
 	showVariations, readVariations ) where
 
@@ -29,6 +29,9 @@ class FontDescriptionAxis a where
 
 newtype Variations = Variations { getVariations :: M.Map BS.ByteString Double }
 	deriving Show
+
+variationsEmpty :: Variations
+variationsEmpty = Variations M.empty
 
 fontDescriptionAddAxis :: String -> String -> DecsQ
 fontDescriptionAddAxis a t = (\n i -> [n, i])

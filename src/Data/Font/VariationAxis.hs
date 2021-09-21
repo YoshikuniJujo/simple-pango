@@ -10,7 +10,7 @@ module Data.Font.VariationAxis (
 	-- * ADD AXIS
 	fontDescriptionAddAxis,
 	-- * SET AND GET AXIS
-	Variations, variationsSetAxis, variationsGetAxis,
+	Variations, variationsEmpty, variationsSetAxis, variationsGetAxis,
 	-- * SHOW AND READ VARIATIONS
 	showVariations, readVariations,
 	-- * DEFAULT AXES
