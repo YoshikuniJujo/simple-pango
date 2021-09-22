@@ -75,6 +75,7 @@ import Data.Bool
 import Data.Word
 import Data.Int
 import Data.Char
+import Data.Color
 import System.IO.Unsafe
 
 import System.GLib.ErrorReporting
@@ -306,14 +307,14 @@ pangoAttrStrikethroughNew b = unsafeIOToPrim
 foreign import ccall "pango_attr_strikethrough_new" c_pango_attr_strikethrough_new ::
 	#{type gboolean} -> IO (Ptr (PangoAttribute s))
 
-data StrikethroughColor = StrikethroughColor Word16 Word16 Word16 deriving Show
+data StrikethroughColor d = StrikethroughColor (Rgb d) deriving Show
 
-instance PangoAttributeValue StrikethroughColor where
+instance RealFrac d => PangoAttributeValue (StrikethroughColor d) where
 	pangoAttrNew = pangoAttrStrikethroughColorNew
 
-pangoAttrStrikethroughColorNew :: PrimMonad m =>
-	StrikethroughColor -> m (PangoAttribute (PrimState m))
-pangoAttrStrikethroughColorNew (StrikethroughColor r g b) = unsafeIOToPrim
+pangoAttrStrikethroughColorNew :: (PrimMonad m, RealFrac d) =>
+	StrikethroughColor d -> m (PangoAttribute (PrimState m))
+pangoAttrStrikethroughColorNew (StrikethroughColor (RgbWord16 r g b)) = unsafeIOToPrim
 	$ mkPangoAttribute =<< c_pango_attr_strikethrough_color_new r g b
 
 foreign import ccall "pango_attr_strikethrough_color_new" c_pango_attr_strikethrough_color_new ::

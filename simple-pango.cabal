@@ -83,6 +83,7 @@ library
     , template-haskell
     , text
     , union-angle
+    , union-color
   default-language: Haskell2010
 
 test-suite simple-pango-test
@@ -107,4 +108,5 @@ test-suite simple-pango-test
     , template-haskell
     , text
     , union-angle
+    , union-color
   default-language: Haskell2010
