@@ -32,11 +32,11 @@ packages:
     git: https://github.com/YoshikuniJujo/union-color
     pantry-tree:
       size: 570
-      sha256: b326ca41e516bace05d8824e310804ed2213057a042657ce31b0793daeb534a9
-    commit: c1199422ab647ddf3b95df8ae3a4ff5992c30479
+      sha256: a45ac984bd7748e131cc261e7815d1de18c498f6206e6637b42523cf6c6b84da
+    commit: a356fa7ff4435bfc62c31a5e9a6ecd073c4002f3
   original:
     git: https://github.com/YoshikuniJujo/union-color
-    commit: c1199422ab647ddf3b95df8ae3a4ff5992c30479
+    commit: a356fa7ff4435bfc62c31a5e9a6ecd073c4002f3
 - completed:
     name: glib-stopgap
     version: 0.1.0.0
