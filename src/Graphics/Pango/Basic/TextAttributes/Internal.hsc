@@ -477,11 +477,11 @@ instance PangoAttributeValue BackgroundAlpha where
 
 pangoAttrForegroundAlphaNew, pangoAttrBackgroundAlphaNew ::
 	PrimMonad m => Word16 -> m (PangoAttribute (PrimState m))
-pangoAttrForegroundAlphaNew a = unsafeIOToPrim
-	$ mkPangoAttribute =<< c_pango_attr_foreground_alpha_new a
+pangoAttrForegroundAlphaNew = unsafeIOToPrim . (mkPangoAttribute =<<)
+	. c_pango_attr_foreground_alpha_new . \case 0 -> 1; a -> a
 
-pangoAttrBackgroundAlphaNew a = unsafeIOToPrim
-	$ mkPangoAttribute =<< c_pango_attr_background_alpha_new a
+pangoAttrBackgroundAlphaNew = unsafeIOToPrim . (mkPangoAttribute =<<)
+	. c_pango_attr_background_alpha_new . \case 0 -> 1; a -> a
 
 foreign import ccall "pango_attr_foreground_alpha_new"
 	c_pango_attr_foreground_alpha_new ::
