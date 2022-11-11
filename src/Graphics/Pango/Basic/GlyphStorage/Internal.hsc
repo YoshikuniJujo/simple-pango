@@ -74,7 +74,7 @@ toCInt (MkFixed i)
 		putStrLn $ prettyCallStack callStack
 		throw Overflow
 
-struct "PangoRectangleFixed" #{size PangoRectangle}
+struct "PangoRectangleFixed" #{size PangoRectangle} #{alignment PangoRectangle}
 	[	("x", ''PangoFixed, [| (fromCInt <$>) . #{peek PangoRectangle, x} |],
 			[| \p -> #{poke PangoRectangle, x} p . toCInt |]),
 		("y", ''PangoFixed, [| (fromCInt <$>) . #{peek PangoRectangle, y} |],
@@ -113,7 +113,7 @@ pangoRectangleFixed (PangoRectangle
 	(fromCInt -> w) (fromCInt -> h)) = (x, y, w, h)
 	-}
 
-struct "PangoRectanglePixel" #{size PangoRectangle}
+struct "PangoRectanglePixel" #{size PangoRectangle} #{alignment PangoRectangle}
 	[	("x", ''CInt, [| #{peek PangoRectangle, x} |],
 			[| #{poke PangoRectangle, x} |]),
 		("y", ''CInt, [| #{peek PangoRectangle, y} |],

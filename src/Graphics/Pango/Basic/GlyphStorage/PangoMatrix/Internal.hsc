@@ -46,7 +46,7 @@ import Graphics.Pango.Basic.GlyphStorage.Internal
 
 #include <pango/pango.h>
 
-struct "PangoMatrix" #{size PangoMatrix}
+struct "PangoMatrix" #{size PangoMatrix} #{alignment PangoMatrix}
 	[	("xx", ''CDouble, [| #{peek PangoMatrix, xx} |],
 			[| #{poke PangoMatrix, xx} |]),
 		("xy", ''CDouble, [| #{peek PangoMatrix, xy} |],
