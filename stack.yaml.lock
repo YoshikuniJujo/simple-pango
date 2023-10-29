@@ -5,52 +5,52 @@
 
 packages:
 - completed:
+    commit: 8a050244590207b0f12e9fd1ce03cdf7beb40a6c
+    git: https://github.com/YoshikuniJujo/simple-cairo
     name: simple-cairo
-    version: 0.1.0.0
-    git: https://github.com/YoshikuniJujo/simple-cairo
     pantry-tree:
-      size: 4958
       sha256: 3cefa56f71e50f710257e05aa844061ca948e5438665370978c251e4f8d7a212
-    commit: 8a050244590207b0f12e9fd1ce03cdf7beb40a6c
+      size: 4958
+    version: 0.1.0.0
   original:
+    commit: 8a050244590207b0f12e9fd1ce03cdf7beb40a6c
     git: https://github.com/YoshikuniJujo/simple-cairo
-    commit: 8a050244590207b0f12e9fd1ce03cdf7beb40a6c
 - completed:
+    commit: a5667505de3f7a9afd1a81e1986c51f2e2ac920c
+    git: https://github.com/YoshikuniJujo/cairo-image
     name: cairo-image
-    version: 0.1.0.0
-    git: https://github.com/YoshikuniJujo/cairo-image
     pantry-tree:
-      size: 887
       sha256: b3607b55a00177ccd0813381def933c9d808aab02854fc6847bd6b133d1302c7
-    commit: a5667505de3f7a9afd1a81e1986c51f2e2ac920c
+      size: 887
+    version: 0.1.0.0
   original:
+    commit: a5667505de3f7a9afd1a81e1986c51f2e2ac920c
     git: https://github.com/YoshikuniJujo/cairo-image
-    commit: a5667505de3f7a9afd1a81e1986c51f2e2ac920c
 - completed:
+    commit: a356fa7ff4435bfc62c31a5e9a6ecd073c4002f3
+    git: https://github.com/YoshikuniJujo/union-color
     name: union-color
-    version: 0.1.0.0
-    git: https://github.com/YoshikuniJujo/union-color
     pantry-tree:
-      size: 570
       sha256: a45ac984bd7748e131cc261e7815d1de18c498f6206e6637b42523cf6c6b84da
-    commit: a356fa7ff4435bfc62c31a5e9a6ecd073c4002f3
-  original:
-    git: https://github.com/YoshikuniJujo/union-color
-    commit: a356fa7ff4435bfc62c31a5e9a6ecd073c4002f3
-- completed:
-    name: glib-stopgap
+      size: 570
     version: 0.1.0.0
-    git: https://github.com/YoshikuniJujo/glib-stopgap
-    pantry-tree:
-      size: 1017
-      sha256: 0a612ab896dca705ef6be3a8be76e6fa4e42063a3b411702b04f75183ca228ca
-    commit: 662f02027d3da47e4a6f7e8e87dcc4b9a7dd758f
   original:
-    git: https://github.com/YoshikuniJujo/glib-stopgap
+    commit: a356fa7ff4435bfc62c31a5e9a6ecd073c4002f3
+    git: https://github.com/YoshikuniJujo/union-color
+- completed:
     commit: 662f02027d3da47e4a6f7e8e87dcc4b9a7dd758f
+    git: https://github.com/YoshikuniJujo/glib-stopgap
+    name: glib-stopgap
+    pantry-tree:
+      sha256: 0a612ab896dca705ef6be3a8be76e6fa4e42063a3b411702b04f75183ca228ca
+      size: 1017
+    version: 0.1.0.0
+  original:
+    commit: 662f02027d3da47e4a6f7e8e87dcc4b9a7dd758f
+    git: https://github.com/YoshikuniJujo/glib-stopgap
 snapshots:
 - completed:
-    size: 619204
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/19/32.yaml
-    sha256: ae630fb633086fb5128ec338a40a60c0f2b0a0f1bcfa9920c15855df2001338e
-  original: lts-19.32
+    sha256: 85d2382958c178491d3fe50d770a624621f5ab456beef7d31ac7521f780c9bc7
+    size: 640042
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/21/17.yaml
+  original: lts-21.17
