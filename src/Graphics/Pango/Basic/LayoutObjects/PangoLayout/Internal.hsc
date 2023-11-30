@@ -547,12 +547,12 @@ foreign import ccall "pango_layout_get_single_paragraph_mode"
 	c_pango_layout_get_single_paragraph_mode ::
 	Ptr PangoLayout -> IO #{type gboolean}
 
-class PangoLayoutInfo i where pangoLayoutInfo :: PangoLayout -> IO i
+class PangoLayoutInfo i where pangoLayoutInfo :: PangoLayout -> i
 
 newtype CharacterCount = CharacterCount CInt deriving Show
 
 instance PangoLayoutInfo CharacterCount where
-	pangoLayoutInfo = (CharacterCount <$>) . pangoLayoutGetCharacterCount
+	pangoLayoutInfo = unsafePerformIO . (CharacterCount <$>) . pangoLayoutGetCharacterCount
 
 pangoLayoutGetCharacterCount :: PangoLayout -> IO CInt
 pangoLayoutGetCharacterCount (PangoLayout_ fpl) =
@@ -564,7 +564,7 @@ foreign import ccall "pango_layout_get_character_count"
 newtype IsEllipsized = IsEllipsized Bool deriving Show
 
 instance PangoLayoutInfo IsEllipsized where
-	pangoLayoutInfo = (IsEllipsized <$>) . pangoLayoutIsEllipsized
+	pangoLayoutInfo = unsafePerformIO . (IsEllipsized <$>) . pangoLayoutIsEllipsized
 
 pangoLayoutIsEllipsized :: PangoLayout -> IO Bool
 pangoLayoutIsEllipsized (PangoLayout_ fl) =
@@ -579,7 +579,7 @@ foreign import ccall "pango_layout_is_ellipsized"
 newtype IsWrapped = IsWrapped Bool deriving Show
 
 instance PangoLayoutInfo IsWrapped where
-	pangoLayoutInfo = (IsWrapped <$>) . pangoLayoutIsWrapped
+	pangoLayoutInfo = unsafePerformIO . (IsWrapped <$>) . pangoLayoutIsWrapped
 
 pangoLayoutIsWrapped :: PangoLayout -> IO Bool
 pangoLayoutIsWrapped (PangoLayout_ fl) =
@@ -594,7 +594,7 @@ foreign import ccall "pango_layout_is_wrapped" c_pango_layout_is_wrapped ::
 newtype UnknownGlyphsCount = UnknownGlyphsCount CInt deriving Show
 
 instance PangoLayoutInfo UnknownGlyphsCount where
-	pangoLayoutInfo = (UnknownGlyphsCount <$>) . pangoLayoutGetUnknownGlyphsCount
+	pangoLayoutInfo = unsafePerformIO . (UnknownGlyphsCount <$>) . pangoLayoutGetUnknownGlyphsCount
 
 pangoLayoutGetUnknownGlyphsCount :: PangoLayout -> IO CInt
 pangoLayoutGetUnknownGlyphsCount (PangoLayout_ fpl) =
@@ -677,7 +677,7 @@ foreign import ccall "pango_log_attr_to_struct" c_pango_log_attr_to_struct ::
 	Ptr PangoLogAttr -> Ptr PangoLogAttrStruct -> IO ()
 
 instance PangoLayoutInfo PangoLogAttrs where
-	pangoLayoutInfo = pure . pangoLayoutGetLogAttrs
+	pangoLayoutInfo = pangoLayoutGetLogAttrs
 
 data PangoLogAttrs = PangoLogAttrs (ForeignPtr PangoLogAttr) CInt deriving Show
 
@@ -706,7 +706,7 @@ pangoLogAttrsGetLogAttr (PangoLogAttrs fla sz) i
 	| otherwise = Nothing
 
 instance PangoLayoutInfo Extents where
-	pangoLayoutInfo = (uncurry Extents <$>) . pangoLayoutGetExtents
+	pangoLayoutInfo = unsafePerformIO . (uncurry Extents <$>) . pangoLayoutGetExtents
 
 pangoLayoutGetExtents :: PangoLayout -> IO (PangoRectangleFixed, PangoRectangleFixed)
 pangoLayoutGetExtents (PangoLayout_ fpl) = withForeignPtr fpl \pl -> do
@@ -720,7 +720,7 @@ foreign import ccall "pango_layout_get_extents" c_pango_layout_get_extents ::
 	Ptr PangoLayout -> Ptr PangoRectangleFixed -> Ptr PangoRectangleFixed -> IO ()
 
 instance PangoLayoutInfo PixelExtents where
-	pangoLayoutInfo = (uncurry PixelExtents <$>) . pangoLayoutGetPixelExtents
+	pangoLayoutInfo = unsafePerformIO . (uncurry PixelExtents <$>) . pangoLayoutGetPixelExtents
 
 pangoLayoutGetPixelExtents :: PangoLayout -> IO (PangoRectanglePixel, PangoRectanglePixel)
 pangoLayoutGetPixelExtents (PangoLayout_ fpl) =
@@ -739,7 +739,7 @@ data LayoutSize = LayoutSize {
 	deriving Show
 
 instance PangoLayoutInfo LayoutSize where
-	pangoLayoutInfo = (uncurry LayoutSize <$>) . pangoLayoutGetSize
+	pangoLayoutInfo = unsafePerformIO . (uncurry LayoutSize <$>) . pangoLayoutGetSize
 
 pangoLayoutGetSize :: PangoLayout -> IO (PangoFixed, PangoFixed)
 pangoLayoutGetSize (PangoLayout_ fpl) =
@@ -755,7 +755,7 @@ data LayoutPixelSize = LayoutPixelSize {
 	deriving Show
 
 instance PangoLayoutInfo LayoutPixelSize where
-	pangoLayoutInfo = (uncurry LayoutPixelSize <$>) . pangoLayoutGetPixelSize
+	pangoLayoutInfo = unsafePerformIO . (uncurry LayoutPixelSize <$>) . pangoLayoutGetPixelSize
 
 pangoLayoutGetPixelSize :: PangoLayout -> IO (CInt, CInt)
 pangoLayoutGetPixelSize (PangoLayout_ fpl) =
@@ -769,7 +769,7 @@ foreign import ccall "pango_layout_get_pixel_size" c_pango_layout_get_pixel_size
 newtype Baseline = Baseline PangoFixed deriving Show
 
 instance PangoLayoutInfo Baseline where
-	pangoLayoutInfo = (Baseline . fromCInt <$>) . pangoLayoutGetBaseline
+	pangoLayoutInfo = unsafePerformIO . (Baseline . fromCInt <$>) . pangoLayoutGetBaseline
 
 pangoLayoutGetBaseline :: PangoLayout -> IO CInt
 pangoLayoutGetBaseline (PangoLayout_ fpl) =
@@ -781,7 +781,7 @@ foreign import ccall "pango_layout_get_baseline" c_pango_layout_get_baseline ::
 newtype LineCount = LineCount CInt deriving Show
 
 instance PangoLayoutInfo LineCount where
-	pangoLayoutInfo = (LineCount <$>) . pangoLayoutGetLineCount
+	pangoLayoutInfo = unsafePerformIO . (LineCount <$>) . pangoLayoutGetLineCount
 
 pangoLayoutGetLineCount :: PangoLayout -> IO CInt
 pangoLayoutGetLineCount (PangoLayout_ fpl) =
