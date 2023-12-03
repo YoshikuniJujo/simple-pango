@@ -6,7 +6,9 @@ cabal-version: 1.12
 
 name:           simple-pango
 version:        0.1.0.1
+synopsis:       Binding to Pango library
 description:    Please see the README on GitHub at <https://github.com/githubuser/simple-pango#readme>
+category:       Graphics
 homepage:       https://github.com/githubuser/simple-pango#readme
 bug-reports:    https://github.com/githubuser/simple-pango/issues
 author:         Author name here
