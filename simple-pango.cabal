@@ -20,6 +20,7 @@ build-type:     Simple
 extra-source-files:
     README.md
     ChangeLog.md
+    include/pango_log_attr.h
 
 source-repository head
   type: git
