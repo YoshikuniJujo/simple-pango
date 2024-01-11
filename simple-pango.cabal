@@ -73,6 +73,7 @@ library
       csrc/pango_log_attr.c
   pkgconfig-depends:
       pangocairo
+    , gobject-2.0
   build-depends:
       array
     , base >=4.7 && <5
