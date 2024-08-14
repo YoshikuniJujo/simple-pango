@@ -17,7 +17,7 @@
 #
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
-resolver: nightly-2024-01-03
+resolver: nightly-2024-08-13
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -39,7 +39,7 @@ packages:
 # - git: https://github.com/commercialhaskell/stack.git
 #   commit: e7b331f14bcffb8367cd58fbfc8b40ec7642100a
 
-extra-deps: []
+extra-deps:
 
 # - git: https://github.com/YoshikuniJujo/simple-cairo
 #   commit: 8a050244590207b0f12e9fd1ce03cdf7beb40a6c
@@ -47,8 +47,9 @@ extra-deps: []
 #   commit: a5667505de3f7a9afd1a81e1986c51f2e2ac920c
 # - git: https://github.com/YoshikuniJujo/union-color
 #   commit: a356fa7ff4435bfc62c31a5e9a6ecd073c4002f3
-# - git: https://github.com/YoshikuniJujo/glib-stopgap
-#   commit: 662f02027d3da47e4a6f7e8e87dcc4b9a7dd758f
+
+- git: https://github.com/YoshikuniJujo/glib-stopgap
+  commit: 429e8b95651bafaa67131a917d94581c89d1c90c
 
 # Override default flag values for local packages and extra-deps
 # flags: {}
