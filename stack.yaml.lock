@@ -5,19 +5,15 @@
 
 packages:
 - completed:
-    commit: 429e8b95651bafaa67131a917d94581c89d1c90c
-    git: https://github.com/YoshikuniJujo/glib-stopgap
-    name: glib-stopgap
+    hackage: glib-stopgap-0.1.0.1@sha256:c196b54b50b39bdfe02b9819d1d39665c5251ab27113beb3dc07e67867fcc3b2,1734
     pantry-tree:
-      sha256: 55b143d73191a9aa456c67f46726aac1ca572e5312d0f5c60f669ca81b1eba7d
-      size: 1273
-    version: 0.1.0.0
+      sha256: 68bb1521d6089ad4684adf0dbe9fcd2b8d9dbe4f56134f4441c28da1d8dc8dec
+      size: 1020
   original:
-    commit: 429e8b95651bafaa67131a917d94581c89d1c90c
-    git: https://github.com/YoshikuniJujo/glib-stopgap
+    hackage: glib-stopgap-0.1.0.1
 snapshots:
 - completed:
-    sha256: 3e2ebb6e538654269973faf683d0068b123a6ee9462a48ac2c3f3281a7bf3f8b
-    size: 658094
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2024/8/13.yaml
-  original: nightly-2024-08-13
+    sha256: cbae768d7cd535b298ba827c2d90f3ac11fa2e907ee7d30fd02d1f7b893f3b28
+    size: 678857
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2024/12/9.yaml
+  original: nightly-2024-12-09
