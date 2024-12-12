@@ -5,15 +5,36 @@
 
 packages:
 - completed:
+    hackage: simple-cairo-0.1.0.6@sha256:3323cf6197c65a24ce9a50a477afa5c9d8061fd80700cdeecb750b70cf4629d4,4422
+    pantry-tree:
+      sha256: 460c778b43afab05cb5cedeb6c0f2783752f98b54ddc0a55f005330e76cbc15b
+      size: 3985
+  original:
+    hackage: simple-cairo-0.1.0.6
+- completed:
+    hackage: cairo-image-0.1.0.4@sha256:9162e2a643f42704d322e9cf9793d0d7ec2103ddb36127c64cc00493f015c092,2071
+    pantry-tree:
+      sha256: 5a6a9c2bc3f161906f782a84cc22a9491a36238be22f43b39f86fd64672a503b
+      size: 632
+  original:
+    hackage: cairo-image-0.1.0.4
+- completed:
     hackage: glib-stopgap-0.1.0.1@sha256:c196b54b50b39bdfe02b9819d1d39665c5251ab27113beb3dc07e67867fcc3b2,1734
     pantry-tree:
       sha256: 68bb1521d6089ad4684adf0dbe9fcd2b8d9dbe4f56134f4441c28da1d8dc8dec
       size: 1020
   original:
     hackage: glib-stopgap-0.1.0.1
+- completed:
+    hackage: exception-hierarchy-0.1.0.12@sha256:69dd8c0d60d1fc5d0a56e5c4c6036f200e30b1a0085c5c82cdb565a6f965844a,871
+    pantry-tree:
+      sha256: 7adff6b75f60adcb02c45287df7b99c14c54fe3ad52a490eca7eb0ce941bfc27
+      size: 299
+  original:
+    hackage: exception-hierarchy-0.1.0.12
 snapshots:
 - completed:
-    sha256: cbae768d7cd535b298ba827c2d90f3ac11fa2e907ee7d30fd02d1f7b893f3b28
-    size: 678857
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2024/12/9.yaml
-  original: nightly-2024-12-09
+    sha256: b0933eba5b921a0e96a54fa7ea43fd0ca73288edb836d44fea32420419c02a8f
+    size: 603055
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2024/12/12.yaml
+  original: nightly-2024-12-12
